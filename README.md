@@ -1,7 +1,7 @@
 # transformurls
 A simple tool that transforms a url or a list of urls to multiple variations of urls by path. 
 
-Main idea: 
+## Goal
 
 ```
 ╰─$ cat examples.txt
@@ -16,3 +16,7 @@ https://www.example.com/
 https://www.example.com/abc/
 https://www.example.com/abc/thatsl/
 ```
+
+## Install
+
+`go get -u github.com/Shaked/transformurls` 
