@@ -31,8 +31,12 @@ func format(u *url.URL) []string {
 	pathsFromUrl := strings.Split(dir, "/")
 	path := ""
 	for t := 0; t < len(pathsFromUrl)-1; t++ {
-		path = fmt.Sprintf("%s%s/", path, pathsFromUrl[t])
+		if pathsFromUrl[t] != "" {
+			path = fmt.Sprintf("%s/%s", path, pathsFromUrl[t])
+		}
 		u.Path = path
+		u.RawQuery = ""
+		u.Fragment = ""
 		formatted = append(formatted, u.String())
 	}
 
