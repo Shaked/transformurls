@@ -11,6 +11,7 @@ import (
 
 func main() {
 	sc := bufio.NewScanner(os.Stdin)
+	seen := make(map[string]bool)
 	for sc.Scan() {
 		u, err := url.Parse(sc.Text())
 		if err != nil {
@@ -19,8 +20,15 @@ func main() {
 		}
 
 		l := format(u)
+
 		for i := 0; i < len(l); i++ {
-			fmt.Println(l[i])
+			key := l[i]
+			// Only output each host + path + params combination once
+			if _, exists := seen[key]; exists {
+				continue
+			}
+			seen[key] = true
+			fmt.Println(key)
 		}
 	}
 }
